@@ -9,4 +9,3 @@ const handmade = require('../index.js')
 
 handmade(__dirname)
   .read('./folder')
-  .then(() => console.log('done'))
