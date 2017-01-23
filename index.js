@@ -49,7 +49,7 @@ const handmade = dir => {
   // empty the queue of Promises in sequence,
   // passing the result of the previous one to the next one
   // return a Promise for chaining
-  function make() {
+  function make () {
     return flush(queue)
   }
 }
