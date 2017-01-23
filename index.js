@@ -4,10 +4,13 @@ const fs = require('fs')
 const path = require('path')
 const flush = require('p-waterfall')
 
+const mkdir = require('./lib/mkdir.js')
 const readdir = require('./lib/readdir.js')
 const readfile = require('./lib/readfile.js')
 
 const handmade = dir => {
+  let from
+
   // array of Promises
   const queue = []
 
@@ -25,18 +28,21 @@ const handmade = dir => {
   return instance
 
   // accepts a path to the source files
-  // returns an object of path -> content pairs
-  // keys and values are just strings
+  // adds read-related tasks to the queue
   function read (to) {
+    from = to
+
     queue.push(() => readdir(context, to))
     queue.push(readfile)
+
     return this
   }
 
   // accepts a path to the destination
-  // everything is deleted, and the new contents are written
+  // adds task to clear the destination directory
+  // adds write-related tasks to the queue
   function write (to) {
-
+    queue.push(mkdir(context, from, to))
     return this
   }
 

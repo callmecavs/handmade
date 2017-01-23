@@ -8,6 +8,7 @@ const path = require('path')
 const handmade = require('../index.js')
 
 handmade(__dirname)
-  .read('./folder')
+  .read('./input')
+  .write('./output')
   .make()
   .then(result => console.log(result))
