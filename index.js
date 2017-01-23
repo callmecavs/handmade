@@ -2,8 +2,14 @@
 
 const fs = require('fs')
 const path = require('path')
+const flush = require('p-waterfall')
+
+const readDir = require('./lib/readDir.js')
 
 const handmade = dir => {
+  // array of Promises
+  const queue = []
+
   // store base for all paths, use it to keep paths relative
   const context = dir
 
@@ -11,7 +17,8 @@ const handmade = dir => {
   // functions below are hoisted
   const instance = {
     read,
-    write
+    write,
+    make
   }
 
   return instance
@@ -20,7 +27,7 @@ const handmade = dir => {
   // returns an object of path -> content pairs
   // keys and values are just strings
   function read (to) {
-
+    queue.push(() => readDir(context, to))
     return this
   }
 
@@ -29,6 +36,13 @@ const handmade = dir => {
   function write (to) {
 
     return this
+  }
+
+  // empty the queue of Promises in sequence,
+  // passing the result of the previous one to the next one
+  // return a Promise for chaining
+  function make() {
+    return flush(queue)
   }
 }
 
