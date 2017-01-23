@@ -13,6 +13,9 @@ DIY static site generation, build systems, tooling, and more.
 
 1. [Install](#install)
 2. [First Build](#first-build)
+3. [Review Transforms](#transforms)
+4. [Review Plugins](#plugins)
+5. [Review Presets](#presets)
 
 ## Install
 
@@ -65,6 +68,18 @@ handmade(__dirname)
 
   })
 ```
+
+## Transforms
+
+A transform is a function that manipulates the source.
+
+## Plugins
+
+A plugin is a group of [transforms](#transforms).
+
+## Presets
+
+Presets are groups of [plugins](#plugins).
 
 ## License
 
