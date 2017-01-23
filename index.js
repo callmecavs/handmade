@@ -52,7 +52,7 @@ const handmade = base => {
     // add task function(s) to the queue
     Array.isArray(funcs)
       ? tasks.push(...funcs)
-      : tasks.push(func)
+      : tasks.push(funcs)
 
     return this
   }
