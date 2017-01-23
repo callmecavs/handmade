@@ -9,3 +9,5 @@ const handmade = require('../index.js')
 
 handmade(__dirname)
   .read('./folder')
+  .write()
+  .make()
