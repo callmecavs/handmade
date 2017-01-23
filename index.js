@@ -4,7 +4,8 @@ const fs = require('fs')
 const path = require('path')
 const flush = require('p-waterfall')
 
-const readDir = require('./lib/readDir.js')
+const readdir = require('./lib/readdir.js')
+const readfile = require('./lib/readfile.js')
 
 const handmade = dir => {
   // array of Promises
@@ -27,7 +28,8 @@ const handmade = dir => {
   // returns an object of path -> content pairs
   // keys and values are just strings
   function read (to) {
-    queue.push(() => readDir(context, to))
+    queue.push(() => readdir(context, to))
+    queue.push(readfile)
     return this
   }
 
