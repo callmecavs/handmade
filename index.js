@@ -2,6 +2,7 @@
 
 const flush = require('p-waterfall')
 
+const clean = require('./lib/clean.js')
 const mkdir = require('./lib/mkdir.js')
 const readdir = require('./lib/readdir.js')
 const readfile = require('./lib/readfile.js')
@@ -27,10 +28,10 @@ const handmade = dir => {
   return instance
 
   // accepts a path to the source files
-  // adds read-related tasks to the queue
   function read (to) {
     from = to
 
+    // add read-related tasks to the queue
     queue.push(() => readdir(context, to))
     queue.push(readfile)
 
@@ -38,11 +39,14 @@ const handmade = dir => {
   }
 
   // accepts a path to the destination
-  // adds task to clear the destination directory
-  // adds write-related tasks to the queue
   function write (to) {
+    // add task to empty the destination directory
+    queue.push(clean(context, to))
+
+    // add write-related tasks to the queue
     queue.push(mkdir(context, from, to))
     queue.push(writefile)
+
     return this
   }
 
