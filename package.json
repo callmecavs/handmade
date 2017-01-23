@@ -23,7 +23,8 @@
   ],
 
   "dependencies": {
-    "mkdirp": "^0.5.1"
+    "mkdirp": "^0.5.1",
+    "p-waterfall": "^1.0.0"
   },
 
   "devDependencies": {
