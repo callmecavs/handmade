@@ -8,6 +8,7 @@ DIY static site generation, build systems, tooling, and more.
 * **Simple.** A task is just a function that returns a Promise.
 * **Custom.** Write your own tasks.
 * **Easy.** Use tasks contributed by the community.
+* **Funky.** Functions to the core. Functional in nature.
 
 ## Getting Started
 
@@ -72,6 +73,11 @@ handmade(__dirname)
 ## Transforms
 
 A transform is a function that manipulates the source.
+
+### Example Code
+
+* [Empty Transform](https://github.com/callmecavs/handmade/blob/master/examples/empty-transform.js) - The concept explained through boilerplate code.
+* [Curried Transform](https://github.com/callmecavs/handmade/blob/master/examples/curried-transform.js) - Use currying to make transforms that accept options.
 
 ## Plugins
 
