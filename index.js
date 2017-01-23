@@ -20,12 +20,20 @@ const handmade = dir => {
   // create and return the instance
   // functions below are hoisted
   const instance = {
+    build,
     read,
-    write,
-    make
+    transform,
+    write
   }
 
   return instance
+
+  // empty the queue of Promises in sequence,
+  // passing the result of the previous one to the next one
+  // return a Promise for chaining
+  function build () {
+    return flush(queue)
+  }
 
   // accepts a path to the source files
   function read (to) {
@@ -34,6 +42,14 @@ const handmade = dir => {
     // add read-related tasks to the queue
     queue.push(() => readdir(context, to))
     queue.push(readfile)
+
+    return this
+  }
+
+  // accepts a transform function
+  function transform (fx) {
+    // add task function to the queue
+    queue.push(fx)
 
     return this
   }
@@ -48,13 +64,6 @@ const handmade = dir => {
     queue.push(writefile)
 
     return this
-  }
-
-  // empty the queue of Promises in sequence,
-  // passing the result of the previous one to the next one
-  // return a Promise for chaining
-  function make () {
-    return flush(queue)
   }
 }
 
