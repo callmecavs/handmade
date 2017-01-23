@@ -47,10 +47,12 @@ const handmade = base => {
     return this
   }
 
-  // accepts a transform function
-  function transform (fx) {
-    // add task function to the queue
-    tasks.push(fx)
+  // accepts a transform function, or array of transform functions
+  function transform (funcs) {
+    // add task function(s) to the queue
+    Array.isArray(funcs)
+      ? tasks.push(...funcs)
+      : tasks.push(func)
 
     return this
   }
