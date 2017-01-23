@@ -1,12 +1,11 @@
 'use strict'
 
-const fs = require('fs')
-const path = require('path')
 const flush = require('p-waterfall')
 
 const mkdir = require('./lib/mkdir.js')
 const readdir = require('./lib/readdir.js')
 const readfile = require('./lib/readfile.js')
+const writefile = require('./lib/writefile.js')
 
 const handmade = dir => {
   let from
@@ -43,6 +42,7 @@ const handmade = dir => {
   // adds write-related tasks to the queue
   function write (to) {
     queue.push(mkdir(context, from, to))
+    queue.push(writefile)
     return this
   }
 
