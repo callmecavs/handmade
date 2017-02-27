@@ -4,7 +4,7 @@
 
 DIY static site generation, build systems, tooling, and more.
 
-* **Small.** The API is just 3 methods!
+* **Small.** The API is just 2 methods!
 * **Simple.** A task is just a function that returns a Promise.
 * **Custom.** Write your own tasks.
 * **Easy.** Use tasks contributed by the community.
@@ -14,9 +14,7 @@ DIY static site generation, build systems, tooling, and more.
 
 1. [Install](#install)
 2. [First Build](#first-build)
-3. [Review Transforms](#transforms)
-4. [Review Plugins](#plugins)
-5. [Review Presets](#presets)
+3. [Review Tasks](#tasks)
 
 ## Install
 
@@ -36,56 +34,52 @@ So, you want to give it a shot?
 // import handmade
 const handmade = require('handmade')
 
-// define a transform
-const example = contents => new Promise((resolve, reject) => {
+// import read/write tasks from core
+const {
+  read,
+  write
+} = require('handmade-core')
+
+// define a task
+const task = contents => new Promise((resolve, reject) => {
   // do work here
   console.log('Heavy lifting.')
 
-  // when done, pass everything along
+  // when done, resolve and pass everything along
   resolve(contents)
 })
 
-// kick off a new build, by passing in the root of your project (usually __dirname)
+// kick off a new build, passing a path to the root of your project
 handmade(__dirname)
   // point it to your source files
-  .read('./input')
+  .add(read('./input'))
 
   // apply your transforms
-  .transform(example)
+  .add(example)
 
-  // tell it where the output should go
-  .write('./output')
+  // point it to where the output should go
+  .add(write('./output'))
 
   // kick off the build
   .build()
 
-  // do other stuff (only if you want to)
-  .then(() => {
+  // do more with the result of the build, if you want to
+  .then(contents => {
 
   })
 
-  // have a backup plan (unless you write perfect code)
+  // have a backup plan
   .catch(error => {
 
   })
 ```
 
-## Transforms
+## Tasks
 
-A transform is a function that manipulates the source.
+A task is a function that manipulates the source.
 
-### Example Code
-
-* [Empty Transform](https://github.com/callmecavs/handmade/blob/master/examples/empty-transform.js) - The concept explained through boilerplate code.
-* [Curried Transform](https://github.com/callmecavs/handmade/blob/master/examples/curried-transform.js) - Use currying to make transforms that accept options.
-
-## Plugins
-
-A plugin is a group of [transforms](#transforms).
-
-## Presets
-
-Presets are groups of [plugins](#plugins).
+* [Empty Task](https://github.com/callmecavs/handmade/blob/master/examples/empty-task.js) - The concept explained through boilerplate code.
+* [Curried Task](https://github.com/callmecavs/handmade/blob/master/examples/curried-task.js) - Use currying to make tasks that accept options.
 
 ## License
 
