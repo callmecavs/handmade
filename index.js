@@ -11,6 +11,14 @@ const writefile = require('./lib/writefile.js')
 // accepts a path to the project root
 // should be whatever __dirname evaluated to
 const handmade = base => {
+  // create the object that is waterfalled through the build
+  const initial = {
+    core: {
+      context: base,
+      files: {}
+    }
+  }
+
   // array of Promises
   // each represents a step in the build
   const tasks = []
