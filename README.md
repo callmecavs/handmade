@@ -34,15 +34,15 @@ So, you want to give it a shot?
 // import handmade
 const handmade = require('handmade')
 
-// import read/write tasks from core
+// import read/write tasks
 const {
   read,
   write
-} = require('handmade-core')
+} = require('handmade-fs')
 
-// define a task
+// define a custom task
 const task = contents => new Promise((resolve, reject) => {
-  // do work here
+  // do work here, sync or async
   console.log('Heavy lifting.')
 
   // when done, resolve and pass everything along
