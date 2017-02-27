@@ -1,6 +1,6 @@
 {
   "name":        "handmade",
-  "description": "DIY static site generation, build systems, tooling, and more.",
+  "description": "DIY build systems, tooling, and more.",
 
   "version": "0.1.0",
   "license": "MIT",

@@ -2,7 +2,7 @@
 
 [![handmade on NPM](https://img.shields.io/npm/v/handmade.svg?style=flat-square)](https://www.npmjs.com/package/handmade) [![Standard JavaScript Style](https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com/)
 
-DIY static site generation, build systems, tooling, and more.
+DIY build systems, tooling, and more.
 
 * **Small.** The API is just 2 methods!
 * **Simple.** A task is just a function that returns a Promise.
@@ -54,7 +54,7 @@ handmade(__dirname)
   // point it to your source files
   .add(read('./input'))
 
-  // add your transform tasks
+  // add your tasks
   .add(task)
 
   // point it to where the output should go
