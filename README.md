@@ -18,7 +18,7 @@ DIY static site generation, build systems, tooling, and more.
 
 ## Install
 
-```bash
+```sh
 # via npm
 $ npm i handmade --save
 
@@ -30,7 +30,7 @@ $ yarn add handmade
 
 So, you want to give it a shot?
 
-```es6
+```javascript
 // import handmade
 const handmade = require('handmade')
 
