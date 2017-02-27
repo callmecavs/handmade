@@ -68,7 +68,7 @@ handmade(__dirname)
 
   })
 
-  // have a backup plan
+  // prepare a backup plan
   .catch(error => {
 
   })
