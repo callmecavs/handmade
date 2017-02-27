@@ -21,13 +21,23 @@ const handmade = base => {
   // create and return the instance
   // functions below are hoisted
   const instance = {
+    add,
     build,
     read,
-    transform,
     write
   }
 
   return instance
+
+  // accepts a transform function, or array of transform functions
+  function add (funcs) {
+    // add task function(s) to the queue
+    Array.isArray(funcs)
+      ? tasks.push(...funcs)
+      : tasks.push(funcs)
+
+    return this
+  }
 
   // empty the queue of tasks in sequence,
   // passing the result of the previous one to the next one
@@ -44,16 +54,6 @@ const handmade = base => {
     // add read-related tasks to the queue
     tasks.push(() => readdir(base, to))
     tasks.push(readfile)
-
-    return this
-  }
-
-  // accepts a transform function, or array of transform functions
-  function transform (funcs) {
-    // add task function(s) to the queue
-    Array.isArray(funcs)
-      ? tasks.push(...funcs)
-      : tasks.push(funcs)
 
     return this
   }
