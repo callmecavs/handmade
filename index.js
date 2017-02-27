@@ -26,17 +26,22 @@ const handmade = base => {
   // create and return the instance
   // functions below are hoisted
   const instance = {
-    add,
     build,
-    read,
-    write
+    task
   }
 
   return instance
 
-  // accepts a transform function, or array of transform functions
-  function add (funcs) {
-    // add task function(s) to the queue
+  // empty the queue of tasks in sequence, passing the result of the previous one to the next one
+  // initial object is passed to the first task
+  function build () {
+    // return a Promise, representing completion of the build
+    // the Promise resolves an object that is the result of all steps in the build executing
+    return flush(tasks, initial)
+  }
+
+  // accepts transform function(s), adds them to the queue
+  function task (funcs) {
     Array.isArray(funcs)
       ? tasks.push(...funcs)
       : tasks.push(funcs)
@@ -44,36 +49,28 @@ const handmade = base => {
     return this
   }
 
-  // empty the queue of tasks in sequence,
-  // passing the result of the previous one to the next one
-  function build () {
-    // return a Promise, representing completion of the build
-    // the Promise passes an object that is the result of all steps in the build executing
-    return flush(tasks)
-  }
-
   // accepts a path to the source files
-  function read (to) {
-    from = to
-
-    // add read-related tasks to the queue
-    tasks.push(() => readdir(base, to))
-    tasks.push(readfile)
-
-    return this
-  }
+  // function read (to) {
+  //   from = to
+  //
+  //   // add read-related tasks to the queue
+  //   tasks.push(() => readdir(base, to))
+  //   tasks.push(readfile)
+  //
+  //   return this
+  // }
 
   // accepts a path to the destination
-  function write (to) {
-    // add task to empty the destination directory
-    tasks.push(clean(base, to))
-
-    // add write-related tasks to the queue
-    tasks.push(mkdir(base, from, to))
-    tasks.push(writefile)
-
-    return this
-  }
+  // function write (to) {
+  //   // add task to empty the destination directory
+  //   tasks.push(clean(base, to))
+  //
+  //   // add write-related tasks to the queue
+  //   tasks.push(mkdir(base, from, to))
+  //   tasks.push(writefile)
+  //
+  //   return this
+  // }
 }
 
 module.exports = handmade
