@@ -64,7 +64,7 @@ handmade(__dirname)
   .build()
 
   // do more with the result of the build, if you want to
-  .then(contents => {
+  .then(result => {
 
   })
 
