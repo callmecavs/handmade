@@ -26,7 +26,7 @@ const handmade = base => {
 
   return instance
 
-  // empty the queue of tasks in sequence, passing the result of the previous one to the next one
+  // empty the queue of tasks in sequence, passing the cumulative result of the previous tasks to the next task
   // initial object is passed to the first task
   function build () {
     // return a Promise, representing completion of the build
