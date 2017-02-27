@@ -33,6 +33,7 @@ const handmade = base => {
   // passing the result of the previous one to the next one
   function build () {
     // return a Promise, representing completion of the build
+    // the Promise passes an object that is the result of all steps in the build executing
     return flush(tasks)
   }
 
