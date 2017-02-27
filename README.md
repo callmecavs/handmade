@@ -81,6 +81,10 @@ A task is a function that manipulates the source.
 * [Empty Task](https://github.com/callmecavs/handmade/blob/master/examples/empty-task.js) - The concept explained through boilerplate code.
 * [Curried Task](https://github.com/callmecavs/handmade/blob/master/examples/curried-task.js) - Use currying to make tasks that accept options.
 
+## Linting
+
+[![JS Standard Style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](http://standardjs.com)
+
 ## License
 
 [MIT](https://opensource.org/licenses/MIT). © 2017 Michael Cavalea
