@@ -8,6 +8,7 @@ DIY build systems, tooling, and more.
 * **Simple.** A task is just a function that returns a Promise.
 * **Custom.** Write your own tasks.
 * **Easy.** Use tasks contributed by the community.
+* **Accessible.** Tasks are just functions. No complex plugin architecture or file system.
 * **Funky.** Functions to the core. Functional in nature.
 
 ## Getting Started
