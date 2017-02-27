@@ -54,8 +54,8 @@ handmade(__dirname)
   // point it to your source files
   .add(read('./input'))
 
-  // apply your transforms
-  .add(example)
+  // add your transform tasks
+  .add(task)
 
   // point it to where the output should go
   .add(write('./output'))
