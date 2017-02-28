@@ -52,13 +52,13 @@ const task = contents => new Promise((resolve, reject) => {
 // kick off a new build, passing a path to the root of your project
 handmade(__dirname)
   // point it to your source files
-  .add(read('./input'))
+  .task(read('./input'))
 
-  // add your tasks
-  .add(task)
+  // add your custom task
+  .task(task)
 
   // point it to where the output should go
-  .add(write('./output'))
+  .task(write('./output'))
 
   // kick off the build
   .build()
@@ -76,10 +76,14 @@ handmade(__dirname)
 
 ## Tasks
 
-A task is a function that manipulates the source.
+A task is a function that manipulates the build object.
 
-* [Empty Task](https://github.com/callmecavs/handmade/blob/master/examples/empty-task.js) - The concept explained through boilerplate code.
-* [Curried Task](https://github.com/callmecavs/handmade/blob/master/examples/curried-task.js) - Use currying to make tasks that accept options.
+handmade is a [waterfall](https://github.com/sindresorhus/p-waterfall) under the hood - a build runs all tasks in series, passing the same build object to each one.
+
+See the example code below (thoroughly commented):
+
+* [Empty Task](https://github.com/callmecavs/handmade/blob/master/examples/empty-task.js) - A task that does nothing.
+* [Curried Task](https://github.com/callmecavs/handmade/blob/master/examples/curried-task.js) - A task that accepts options via currying.
 
 ## See Also
 
