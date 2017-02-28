@@ -1,13 +1,13 @@
 'use strict'
 
-// must accept the build contents object
-// must return a Promise
+// a task must accept the build contents object
+// a task must return a Promise
 const task = contents => new Promise((resolve, reject) => {
-  // access the fileset via the contents object
-  const { files } = contents.core
+  // optionally, work with data added by the handmade core or previous tasks in the build
+  let { core } = contents
 
-  // remember to resolve the transformed contents object
-  // remember to include the contents you didnt modify
+  // when done working with the contents object, remeber to resolve both
+  // the contents modified by your task, and the contents you didn't touch
   resolve(contents)
 })
 
