@@ -4,12 +4,11 @@
 
 DIY build systems, tooling, and more.
 
-* **Small.** The API is just 2 methods!
+* **Small.** The API is just 2 methods.
 * **Simple.** A task is just a function that returns a Promise.
-* **Custom.** Write your own tasks.
-* **Easy.** Use tasks contributed by the community.
-* **Accessible.** Tasks are just functions. No complex plugin architecture or file system.
-* **Funky.** Functions to the core. Functional in nature.
+* **Familiar.** Easily write your own tasks using node and the ecosystem.
+* **Accessible.** No complex plugin architecture or file handling.
+* **Fluid.** Functions to the core. Functional in nature.
 
 ## Getting Started
 
