@@ -13,8 +13,8 @@ DIY build systems, tooling, and more.
 ## Getting Started
 
 1. [Install](#install)
-2. [First Build](#first-build)
-3. [Review Tasks](#tasks)
+2. [Review Tasks](#tasks)
+3. [First Build](#first-build)
 
 ## Install
 
@@ -26,15 +26,26 @@ $ npm i handmade --save
 $ yarn add handmade
 ```
 
+## Tasks
+
+A task is a function that manipulates the build object.
+
+handmade is a [waterfall](https://github.com/sindresorhus/p-waterfall) under the hood - a build runs all tasks in series, passing the same build object to each one.
+
+See the example code below (thoroughly commented):
+
+* [Empty Task](https://github.com/callmecavs/handmade/blob/master/examples/empty-task.js) - A task that does nothing.
+* [Curried Task](https://github.com/callmecavs/handmade/blob/master/examples/curried-task.js) - A task that accepts options via currying.
+
 ## First Build
 
-So, you want to give it a shot?
+Give this example a look. If you want to work with the filesystem, it's this simple:
 
 ```javascript
 // import handmade
 const handmade = require('handmade')
 
-// import read/write tasks
+// import fs read/write tasks
 const {
   read,
   write
@@ -42,10 +53,14 @@ const {
 
 // define a custom task
 const task = contents => new Promise((resolve, reject) => {
-  // do work here, sync or async
-  console.log('Heavy lifting.')
+  // destructure file data from contents
+  let { files } = contents.core
 
-  // when done, resolve and pass everything along
+  // do work here, sync or async, using the file data
+  // files is an object of file paths -> file contents
+  console.log(files)
+
+  // when done, resolve and pass along the contents object
   resolve(contents)
 })
 
@@ -73,17 +88,6 @@ handmade(__dirname)
 
   })
 ```
-
-## Tasks
-
-A task is a function that manipulates the build object.
-
-handmade is a [waterfall](https://github.com/sindresorhus/p-waterfall) under the hood - a build runs all tasks in series, passing the same build object to each one.
-
-See the example code below (thoroughly commented):
-
-* [Empty Task](https://github.com/callmecavs/handmade/blob/master/examples/empty-task.js) - A task that does nothing.
-* [Curried Task](https://github.com/callmecavs/handmade/blob/master/examples/curried-task.js) - A task that accepts options via currying.
 
 ## See Also
 
