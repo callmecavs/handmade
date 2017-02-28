@@ -5,19 +5,62 @@
 const assert = require('chai').assert
 const path = require('path')
 
-const handmade = require('../index.js')
+const handmade = require('../')
 
-const {
-  read,
-  write
-} = require('handmade-fs')
+const CONTEXT = __dirname
 
-const empty = require('../examples/empty-task.js')
+const EXPECTED = {
+  core: {
+    context: '/Users/Cavs/Code/handmade/test',
+    files: {}
+  }
+}
 
-handmade(__dirname)
-  .add(read('./input'))
-  .add(empty)
-  .add(write('./output'))
-  .build()
-  .then(result => console.log(result))
-  .catch(error => console.log(error))
+const syncTask = contents => Promise.resolve(contents)
+const asyncTask = contents => new Promise(resolve => setTimeout(() => resolve(contents), 100))
+
+describe('handmade', () => {
+  it('should build without tasks', done => {
+    handmade(CONTEXT)
+      .build()
+      .then(result => {
+        assert.deepEqual(result, EXPECTED)
+        done()
+      })
+      .catch(error => console.log(error))
+  })
+
+  it('should build with sync tasks', done => {
+    handmade(CONTEXT)
+      .task(syncTask)
+      .build()
+      .then(result => {
+        assert.deepEqual(result, EXPECTED)
+        done()
+      })
+      .catch(error => console.log(error))
+  })
+
+  it('should build with async tasks', done => {
+    handmade(CONTEXT)
+      .task(asyncTask)
+      .build()
+      .then(result => {
+        assert.deepEqual(result, EXPECTED)
+        done()
+      })
+      .catch(error => console.log(error))
+  })
+
+  it('should build with multiple tasks (sync and/or async)', done => {
+    handmade(CONTEXT)
+      .task(syncTask)
+      .task(asyncTask)
+      .build()
+      .then(result => {
+        assert.deepEqual(result, EXPECTED)
+        done()
+      })
+      .catch(error => console.log(error))
+  })
+})
