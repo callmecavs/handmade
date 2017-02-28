@@ -51,8 +51,8 @@ const {
   write
 } = require('handmade-fs')
 
-// define a custom task
-const task = contents => new Promise((resolve, reject) => {
+// define a custom task that has access to file data
+const customTask = contents => new Promise((resolve, reject) => {
   // destructure file data from contents
   let { files } = contents.core
 
@@ -70,7 +70,7 @@ handmade(__dirname)
   .task(read('./input'))
 
   // add your custom task
-  .task(task)
+  .task(customTask)
 
   // point it to where the output should go
   .task(write('./output'))
@@ -83,7 +83,7 @@ handmade(__dirname)
 
   })
 
-  // have a backup plan
+  // when shit blows up
   .catch(error => {
 
   })
