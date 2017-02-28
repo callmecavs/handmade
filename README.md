@@ -1,6 +1,6 @@
 # handmade
 
-[![handmade on NPM](https://img.shields.io/npm/v/handmade.svg?style=flat-square)](https://www.npmjs.com/package/handmade) [![Standard JavaScript Style](https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com/)
+[![handmade on Travis](https://img.shields.io/travis/callmecavs/handmade.svg?style=flat-square)](https://travis-ci.org/callmecavs/handmade) [![handmade on NPM](https://img.shields.io/npm/v/handmade.svg?style=flat-square)](https://www.npmjs.com/package/handmade) [![Standard JavaScript Style](https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com/)
 
 DIY build systems, tooling, and more.
 
