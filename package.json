@@ -14,7 +14,7 @@
   },
 
   "scripts": {
-    "lint": "standard",
+    "lint": "standard index.js",
     "test": "mocha test"
   },
 
