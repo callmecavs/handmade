@@ -85,10 +85,6 @@ A task is a function that manipulates the source.
 
 * [handmade-fs](https://github.com/callmecavs/handmade-fs) - File system tasks for [handmade](https://github.com/callmecavs/handmade).
 
-## Linting
-
-[![JS Standard Style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](http://standardjs.com)
-
 ## License
 
 [MIT](https://opensource.org/licenses/MIT). © 2017 Michael Cavalea
