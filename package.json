@@ -23,8 +23,6 @@
   ],
 
   "dependencies": {
-    "del": "^2.2.2",
-    "mkdirp": "^0.5.1",
     "p-waterfall": "^1.0.0"
   },
 
