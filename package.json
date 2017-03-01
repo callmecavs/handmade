@@ -15,7 +15,7 @@
 
   "scripts": {
     "lint": "standard index.js",
-    "test": "mocha test"
+    "test": "npm run lint && mocha test"
   },
 
   "keywords": [
