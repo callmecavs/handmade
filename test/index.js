@@ -11,7 +11,7 @@ const CONTEXT = __dirname
 
 const EXPECTED = {
   core: {
-    context: '/Users/Cavs/Code/handmade/test',
+    context: CONTEXT,
     files: {}
   }
 }
